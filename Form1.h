@@ -107,6 +107,7 @@ namespace ProjCLR {
 			this->txt_quantidade->Name = L"txt_quantidade";
 			this->txt_quantidade->Size = System::Drawing::Size(100, 20);
 			this->txt_quantidade->TabIndex = 1;
+			this->txt_quantidade->TextChanged += gcnew System::EventHandler(this, &Form1::Txt_quantidade_TextChanged);
 			// 
 			// lbl_preco
 			// 
@@ -123,6 +124,7 @@ namespace ProjCLR {
 			this->txt_preco->Name = L"txt_preco";
 			this->txt_preco->Size = System::Drawing::Size(100, 20);
 			this->txt_preco->TabIndex = 3;
+			this->txt_preco->TextChanged += gcnew System::EventHandler(this, &Form1::Txt_preco_TextChanged);
 			// 
 			// bt_calcular
 			// 
@@ -167,6 +169,7 @@ namespace ProjCLR {
 			this->cmb_escalao->Name = L"cmb_escalao";
 			this->cmb_escalao->Size = System::Drawing::Size(121, 21);
 			this->cmb_escalao->TabIndex = 8;
+			this->cmb_escalao->SelectedIndexChanged += gcnew System::EventHandler(this, &Form1::Cmb_escalao_SelectedIndexChanged);
 			// 
 			// lbl_crianca
 			// 
@@ -204,6 +207,7 @@ namespace ProjCLR {
 			this->chk_x->TabIndex = 12;
 			this->chk_x->Text = L"x";
 			this->chk_x->UseVisualStyleBackColor = true;
+			this->chk_x->CheckedChanged += gcnew System::EventHandler(this, &Form1::Chk_x_CheckedChanged);
 			// 
 			// chk_y
 			// 
@@ -214,6 +218,7 @@ namespace ProjCLR {
 			this->chk_y->TabIndex = 13;
 			this->chk_y->Text = L"y";
 			this->chk_y->UseVisualStyleBackColor = true;
+			this->chk_y->CheckedChanged += gcnew System::EventHandler(this, &Form1::Chk_y_CheckedChanged);
 			// 
 			// chk_z
 			// 
@@ -224,6 +229,7 @@ namespace ProjCLR {
 			this->chk_z->TabIndex = 14;
 			this->chk_z->Text = L"z";
 			this->chk_z->UseVisualStyleBackColor = true;
+			this->chk_z->CheckedChanged += gcnew System::EventHandler(this, &Form1::Chk_z_CheckedChanged);
 			// 
 			// lbl_extra
 			// 
@@ -252,6 +258,7 @@ namespace ProjCLR {
 			this->rdb_sim->TabIndex = 17;
 			this->rdb_sim->Text = L"Sim";
 			this->rdb_sim->UseVisualStyleBackColor = true;
+			this->rdb_sim->CheckedChanged += gcnew System::EventHandler(this, &Form1::Rdb_sim_CheckedChanged);
 			// 
 			// rdb_nao
 			// 
@@ -264,6 +271,7 @@ namespace ProjCLR {
 			this->rdb_nao->TabStop = true;
 			this->rdb_nao->Text = L"Não";
 			this->rdb_nao->UseVisualStyleBackColor = true;
+			this->rdb_nao->CheckedChanged += gcnew System::EventHandler(this, &Form1::Rdb_nao_CheckedChanged);
 			// 
 			// lbl_info_agrav
 			// 
@@ -318,8 +326,24 @@ namespace ProjCLR {
 		float extras = 0;
 
 		//Obtenção dos valores
-		quant = Convert::ToDouble(txt_quantidade->Text);
-		preco = Convert::ToDouble(txt_preco->Text);
+		try
+		{
+			quant = Convert::ToDouble(txt_quantidade->Text);
+		}
+		catch (...)
+		{
+			txt_preco->Text = "0";
+		}
+
+		try
+		{
+			preco = Convert::ToDouble(txt_preco->Text);
+		}
+		catch (...)
+		{
+			txt_quantidade->Text = "0";
+		}
+
 		if (chk_x->Checked) { extras = extras + 10; };
 		if (chk_y->Checked) { extras = extras + 10; };
 		if (chk_z->Checked) { extras = extras + 10; };
@@ -348,8 +372,24 @@ namespace ProjCLR {
 		float extras = 0;
 
 		//Obtenção dos valores
-		quant = Convert::ToDouble(txt_quantidade->Text);
-		preco = Convert::ToDouble(txt_preco->Text);
+		try
+		{
+			quant = Convert::ToDouble(txt_quantidade->Text);
+		}
+		catch (...)
+		{
+			txt_preco->Text = "0";
+		}
+
+		try
+		{
+			preco = Convert::ToDouble(txt_preco->Text);
+		}
+		catch (...)
+		{
+			txt_quantidade->Text = "0";
+		}
+
 		if (chk_x->Checked) { extras = extras + 10; };
 		if (chk_y->Checked) { extras = extras + 10; };
 		if (chk_z->Checked) { extras = extras + 10; };
@@ -368,5 +408,39 @@ namespace ProjCLR {
 		txt_total->Text = Convert::ToString(preco_final);
 	}
 
+private: System::Void Txt_quantidade_TextChanged(System::Object^ sender, System::EventArgs^ e) { }
+
+private: System::Void Txt_preco_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
+
+private: System::Void Cmb_escalao_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+	calcular();
+	}
+
+
+private: System::Void Chk_x_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+	calcular();
+	}
+
+private: System::Void Chk_y_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+	calcular();
+	}
+
+private: System::Void Chk_z_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+	calcular();
+	}
+
+private: System::Void Rdb_sim_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+	calcular();
+	}
+
+private: System::Void Rdb_nao_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+	calcular();
+	}
 };
 }
