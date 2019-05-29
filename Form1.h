@@ -317,49 +317,52 @@ namespace ProjCLR {
 	//Data: 28maio2019
 	//Feito por: Jorge Sepúlveda
 	//Titulo: Produção 1
+
 	private: System::Void Bt_calcular_Click(System::Object^ sender, System::EventArgs^ e) {
+
+		calcular();
 		
-		//Criação e inicialização das variáveis
-		float quant = 0;
-		float preco = 0;
-		float preco_final;
-		float extras = 0;
+		////Criação e inicialização das variáveis
+		//float quant = 0;
+		//float preco = 0;
+		//float preco_final;
+		//float extras = 0;
 
-		//Obtenção dos valores
-		try
-		{
-			quant = Convert::ToDouble(txt_quantidade->Text);
-		}
-		catch (...)
-		{
-			txt_preco->Text = "0";
-		}
+		////Obtenção dos valores
+		//try
+		//{
+		//	quant = Convert::ToDouble(txt_quantidade->Text);
+		//}
+		//catch (...)
+		//{
+		//	txt_preco->Text = "0";
+		//}
 
-		try
-		{
-			preco = Convert::ToDouble(txt_preco->Text);
-		}
-		catch (...)
-		{
-			txt_quantidade->Text = "0";
-		}
+		//try
+		//{
+		//	preco = Convert::ToDouble(txt_preco->Text);
+		//}
+		//catch (...)
+		//{
+		//	txt_quantidade->Text = "0";
+		//}
 
-		if (chk_x->Checked) { extras = extras + 10; };
-		if (chk_y->Checked) { extras = extras + 10; };
-		if (chk_z->Checked) { extras = extras + 10; };
+		//if (chk_x->Checked) { extras = extras + 10; };
+		//if (chk_y->Checked) { extras = extras + 10; };
+		//if (chk_z->Checked) { extras = extras + 10; };
 
 
-		//Calculo do valor final
-		preco_final = (quant * preco)+extras;
+		////Calculo do valor final
+		//preco_final = (quant * preco)+extras;
 
-		//Aplicação doa descontos e agravamento
-		if (cmb_escalao->Text == "Criança") { preco_final = preco_final * 0.95; };
-		if (cmb_escalao->Text == "Reformado") { preco_final = preco_final * 0.93; };
+		////Aplicação doa descontos e agravamento
+		//if (cmb_escalao->Text == "Criança") { preco_final = preco_final * 0.95; };
+		//if (cmb_escalao->Text == "Reformado") { preco_final = preco_final * 0.93; };
 
-		if (rdb_sim->Checked) { preco_final = preco_final * 1.1; };
+		//if (rdb_sim->Checked) { preco_final = preco_final * 1.1; };
 
-		//Devolução do valor calculado
-		txt_total->Text = Convert::ToString(preco_final);
+		////Devolução do valor calculado
+		//txt_total->Text = Convert::ToString(preco_final);
 
 	}
 
@@ -375,20 +378,21 @@ namespace ProjCLR {
 		try
 		{
 			quant = Convert::ToDouble(txt_quantidade->Text);
-		}
-		catch (...)
-		{
-			txt_preco->Text = "0";
-		}
-
-		try
-		{
 			preco = Convert::ToDouble(txt_preco->Text);
 		}
 		catch (...)
 		{
-			txt_quantidade->Text = "0";
+			//txt_preco->Text = "0";
 		}
+
+		//try
+		//{
+		//	preco = Convert::ToDouble(txt_preco->Text);
+		//}
+		//catch (...)
+		//{
+		//	txt_quantidade->Text = "0";
+		//}
 
 		if (chk_x->Checked) { extras = extras + 10; };
 		if (chk_y->Checked) { extras = extras + 10; };
@@ -408,39 +412,44 @@ namespace ProjCLR {
 		txt_total->Text = Convert::ToString(preco_final);
 	}
 
-private: System::Void Txt_quantidade_TextChanged(System::Object^ sender, System::EventArgs^ e) { }
+private: System::Void Txt_quantidade_TextChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+		calcular();
+	}
 
-private: System::Void Txt_preco_TextChanged(System::Object^ sender, System::EventArgs^ e) {}
+private: System::Void Txt_preco_TextChanged(System::Object^ sender, System::EventArgs^ e) 
+	{
+		calcular();
+	}
 
 private: System::Void Cmb_escalao_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
-	calcular();
+		calcular();
 	}
-
 
 private: System::Void Chk_x_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
-	calcular();
+		calcular();
 	}
 
 private: System::Void Chk_y_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
-	calcular();
+		calcular();
 	}
 
 private: System::Void Chk_z_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
-	calcular();
+		calcular();
 	}
 
 private: System::Void Rdb_sim_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
-	calcular();
+		calcular();
 	}
 
 private: System::Void Rdb_nao_CheckedChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
-	calcular();
+		calcular();
 	}
 };
 }
